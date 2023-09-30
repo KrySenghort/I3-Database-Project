@@ -1,0 +1,40 @@
+# ======================================================================================================
+# ================================ III.) Scheduled Analysis : ==========================================
+SELECT * FROM Scheduled;
+# a.) show the movieID with number of time of playing.
+SELECT movieID, COUNT(*) as num_playing FROM scheduled
+	GROUP BY movieID HAVING COUNT(*);
+    
+# b.) show the number of time playing and provide movieName and movieType
+SELECT movieName,movieType,COUNT(*) as num_playing 
+	FROM scheduled s INNER JOIN movie m
+		ON s.movieID = m.movieID 
+			GROUP BY m.movieName,m.movieType;
+            
+# c) show the number of time playing based on movieID and provide movieID,Name and Type
+SELECT m.movieID, m.movieName, m.movieType, COUNT(*) AS num_playing
+	FROM scheduled s
+		INNER JOIN movie m ON s.movieID = m.movieID
+			GROUP BY m.movieID, m.movieName, m.movieType;  
+            
+# d) show the number of movie playing in each theater from scheduled  
+SELECT theaterID, COUNT(*) as num_movie_playing FROM scheduled 
+	GROUP BY theaterID HAVING COUNT(*);
+    
+# e.) show the number of each movie playing in each theater
+SELECT t.theaterName, m.movieName, COUNT(*) as numPlaying FROM Scheduled s
+	JOIN Theater t ON s.theaterID = t.theaterID
+	JOIN Movie m ON s.movieID = m.movieID
+		GROUP BY t.theaterName, m.movieName;
+
+# f.) show the number of each theater playing for each of movie
+SELECT m.movieName, t.theaterName, COUNT(*) AS numPlaying FROM Scheduled s
+	JOIN Movie m ON s.movieID = m.movieID
+	JOIN Theater t ON s.theaterID = t.theaterID
+		GROUP BY m.movieName, t.theaterName;
+
+# g.) show the movie info where playing at 13:00:00
+SELECT DISTINCT m.* 
+	FROM movie m JOIN scheduled s 
+		ON m.movieID = s.movieID
+			WHERE TIME(s.showMovieDate) = '13:00:00';

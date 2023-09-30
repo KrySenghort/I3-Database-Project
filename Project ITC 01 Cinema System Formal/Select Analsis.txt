@@ -1,0 +1,131 @@
+USE project_itc_cinema_system_formal;
+# ==================================================================================================
+# ================================ I.) Theater Analysis : ==========================================
+SELECT * FROM theater;
+# a.) show theater where capacity = 350
+SELECT * FROM theater where theaterCapacity = 350;
+# b.) show theater where capactity between 150 to 200
+SELECT * FROM theater where theaterCapacity >= 150 and theaterCapacity <= 200;
+# c.) show theater where capacity between 200 to 400
+SELECT * FROM theater where theaterCapacity >= 200 and theaterCapacity <= 400;
+# d.) show theater where theaterAddress = '271 Street,Phnom Penh'
+SELECT * FROM theater where theaterAddress = '271 Street,Phnom Penh';
+# e.) show theater info where theater 01 
+SELECT * FROM theater where theaterID = 1 or theaterID = 2;
+# f.) show theater info where theaterOpenTime between 07:00am and 09:00am
+SELECT * FROM theater where theaterOpenTime BETWEEN '07:00:00' AND '9:00:00';
+# g.) show theater info where theaterOpenTime between 9:00am and 11:00am
+SELECT * FROM theater where theaterOpenTime >= '09:00:00' AND theaterOpenTime <= '11:00:00';
+# h.) show theaterOpenTime for each theater
+SELECT theaterOpenTime FROM theater;
+# i.) show theaterCloseTime for each theater
+SELECT theaterCloseTime FROM theater;
+# j. show closeTime and openTime 
+SELECT theaterOpenTime,theaterCloseTime FROM theater;
+# k.) show each theaterName
+SELECT theaterName FROM theater; 
+# j.) show theaterAddress 
+SELECT theaterAddress FROM theater;
+# k.) show name, address and capacity of each theater
+SELECT theaterName, theaterAddress, theaterCapacity FROM theater;
+# l.) count number of theater and show
+SELECT COUNT(*) as number_of_theater FROM theater;
+# m.) count number of theaterID and show
+SELECT COUNT(theaterID) as number_of_theater FROM theater;
+# n.) show theater info where maximized capacity
+SELECT MAX(theaterCapacity) as max_quantity FROM theater;
+SELECT * FROM theater where theaterCapacity = (SELECT MAX(theaterCapacity) FROM theater);
+# 0.) show theater info where minimized capacity
+SELECT * FROM theater where theaterCapacity = (SELECT MIN(theaterCapacity) FROM theater);
+# p.) show the average capacity of theater
+SELECT AVG(theaterCapacity) as average_capacity FROM theater;
+# q.) show theater info where latest OpenTime 
+SELECT * FROM theater where theaterOpenTime = (SELECT MAX(theaterOpenTime) FROM theater);
+# r.) show theater info where previously first OpenTime
+SELECT * FROM theater where theaterOpenTime = (SELECT MIN(theaterOpenTime) FROM theater);
+# s.) show theater info where previously first CloseTime
+SELECT * FROM theater where theaterCloseTime = (SELECT MIN(theaterCloseTime) FROM theater);
+# t.) show theater info where latest OpenTime
+SELECT * FROM theater where theaterCloseTime = (SELECT MAX(theaterCloseTime) FROM theater);
+
+# =================================================================================================
+# ================================ II.) Movie Analysis : ==========================================
+SELECT * FROM movie;
+# a.) show movie info where id = [1,2,3,4,5,6,7,8,9,10]
+SELECT * FROM movie where movieID IN (1,2,3,4,5,6,7,8,9,10);
+# b.) show movie info where movieName = 'The Avengers'
+SELECT * FROM movie where movieName = 'The Avengers';
+# c.) show all of movieName
+SELECT DISTINCT movieName FROM movie;
+# d.) show all of movieType
+SELECT DISTINCT movieType FROM movie;
+# e.) show all of movieName with type and description
+SELECT DISTINCT movieName,movieType,movieDescription FROM movie;
+# f.) show the movie info where movieType = 'Action' and count number of Action movie
+SELECT * FROM movie where movieType = 'Action';
+SELECT COUNT(*) AS number_of_action_movie FROM movie 
+	where movieType = 'Action';
+# g.) show duplicate movie
+SELECT movieName, COUNT(*) as num_movieName_duplicate FROM movie 
+	GROUP BY movieName HAVING COUNT(*) > 1;
+# h.) show duplicate type 
+SELECT movieType, COUNT(*) as num_movieType_duplicate FROM movie 
+	GROUP BY movieType HAVING COUNT(*) > 1;
+# i.) show movie info where minimized number of movieType or unique type
+SELECT movieID, movieName, movieType FROM Movie 
+	GROUP BY movieID, movieName, movieType
+		HAVING COUNT(DISTINCT movieType)=(
+			SELECT MIN(typeCount) FROM (
+				SELECT COUNT(DISTINCT movieType) AS typeCount FROM movie
+					GROUP BY movieID, movieName) AS typeCounts);
+# j) show movie info where minimized number of movieName or unique Name
+SELECT movieID, movieName, movieType FROM Movie 
+	GROUP BY movieID, movieName, movieType
+		HAVING COUNT(DISTINCT movieName)=(
+			SELECT MIN(NameCount) FROM (
+				SELECT COUNT(DISTINCT movieName)AS NameCount FROM movie
+					GROUP BY movieID, movieType) AS NameCounts);      
+# k.) show the lowest rating movie
+SELECT * FROM movie where movieRating = (SELECT min(movieRating) FROM movie); 
+# l.) show the highest rating movie
+SELECT * FROM movie where movieRating = (SELECT max(movieRating) FROM movie); 
+# m.) show movie info where releaseDate after 2000
+SELECT * FROM movie where year(movieReleaseDate) >= 2000;
+# n.) show movie info where minimized duration 
+SELECT * FROM movie where movieDuration = (SELECT MIN(movieDuration) FROM movie);
+# o.)show movie info where maximized duration
+SELECT * FROM movie where movieDuration = (SELECT MAX(movieDuration) FROM movie);
+# p.) show movie info where shortest length description
+SELECT * FROM movie where length(movieDescription) = (SELECT min(length(movieDescription)) FROM movie); 
+# q.) show movie info where longest length description
+SELECT * FROM movie where length(movieDescription) = (SELECT max(length(movieDescription)) FROM movie); 
+# r.) delete movie duplicate
+DELETE FROM movie where movieID NOT IN(SELECT MIN(movieID) FROM movie GROUP BY movieName);
+# s. show movie info where movieDuration >= 2h
+SELECT * FROM movie where movieDuration >= '02:00:00';
+# t. show movie info where movieDuration >= 1h but <= 2h
+SELECT * FROM movie where movieDuration  BETWEEN '01:00:00' and '02:00:00';
+# u. show movie info where year(movieReleaseDate) = 2017
+SELECT * FROM movie where movieReleaseDate >= '2017:01:01' and movieReleaseDate <= '2017:12:31';
+# v. show movie info where year(movieReleaseDate) = 2010
+SELECT * FROM movie WHERE YEAR(movieReleaseDate) = 2010;
+# w. show movie info where year(movieReleaseDate) = 2012
+SELECT * FROM movie where year(movieReleaseDate) = 2012;
+# x. show movie info where month(movieReleaseDate) = 2 or month = Febraury
+SELECT * FROM movie where month(movieReleaseDate) = 2;
+# y. show movie info where month(movieReleaseDate) = 1 and year(movieReleaseDate) = 2010
+SELECT * FROM movie where month(movieReleaseDate) = 2 and year(movieReleaseDate) = 2018;
+# z. show movie info where day(movieReleaseDate) = 16
+SELECT * FROM movie where day(movieReleaseDate) = 16;
+# aa. show movies info where average rating 
+SELECT * FROM movie where movieRating >= 5 and movieRating < 6; 
+# bb. show movie info where rating between 5 to 8
+SELECT * FROM movie where movieRating between 5 and 8;
+# cc. show movie info in which type of comedia 
+SELECT * FROM movie where movieType = 'Comedy';
+# dd. show movie info in which type of romance 
+SELECT * FROM movie where movieType = 'Drama';
+
+# ======================================================================================================
+# ================================ III.) Scheduled Analysis : ==========================================
+SELECT * FROM Scheduled;

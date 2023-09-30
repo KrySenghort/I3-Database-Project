@@ -1,0 +1,60 @@
+Q1: What is customer experience ?
+=> The Customer Experience is a crucial key aspect for the function of companies. It ensures the trust between the customer and the company itself. Moreover, it enables the organisation to improve by analysing the comments from feedback, in order to comprehend customers and keep them close to the company or attract further by spreading good rumours to the market
+
+Q2: What is industry 4.0 ?
+=> The industry 4.0 is the radical change in the industry, caused by AI in parallel with the Internet of Things (IoT), big data analytics, cloud and cyber physical systems.
+
+Q3: Explain the keywords: 
+	+ Artificial Intelligence
+	+ Machine Learning
+	+ Deep Learning
+	+ Customer Experience Insights
+	+ Customer Feedback.
+
+Q4: What are problems that we can use AI to solve ?
+  + It is used for prevention of natural disasters. There are centres, which collect real time and archived   data   (e.g., weather agencies, sensors, satellites, social media feeds, photos, video and mobile phone GPS     signals), making more efficient the collaboration between different networks and organisations, and enabling    faster decisions, in order to react faster and anticipate the effects (for example a flood) in human and       economic loss.
+
+  + AI is very useful for optimising customer experience
+
+  + Healthcare: AI can assist in diagnosing diseases faster and more accurately, develop personalized treatment     plans for patients, and analyze vast amounts of data to identify patterns that can lead to new treatments.
+
+  + Finance: AI can help financial institutions detect fraud, forecast market trends, and automate customer       service tasks.
+
+  + Education: AI can personalize learning experiences for students, identify areas where students may need        extra support, and even provide virtual tutoring.
+
+  + Agriculture: AI can be used to optimize crop yields, reduce waste, and predict weather patterns that affect     crop growth.
+
+  + Transportation: AI can improve logistics and supply chain management, enhance route planning, and reduce        transportation-related emissions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+==================================== Cinema System(Developer)===================================
+- Note: 
+	+ Ticket sale : online booking
+	+ Film categories : we have already setting up the type of film.
+	+ Time management : we can choose time that was set based to system policy.
+	+ Branches option : we can book the place that we want to visit.
+	+ Income and Outcome.
+=================================================================================================
++ Entities:
+	+ Seller: ID,name,sex,DOB,salary,phone
+	+ Customer: Ticket No,Name,Sex,age,
+		    
+	+ Manager:
+	+ Security:
+	+ Film category: 
+	+ 
+
+
+
+
+
+
+
+
+- Attribute:
+	+ phone
+	+ name 
+	+ email
+	+ password
+	+ branches
+	+ timetable
+	+ price
+==> We should modify 
+=================================================================================================
+Entity: is object of class
+	+ employee: (data member)ID,name, 
+
+					Flowchart Diagram:
+
+				User 			Admin
+			+ register			+ delete 
+				- phone__		+ search + update
+				- email__		+ add
+				- password__		+ display
+			+ select location of cinema		+ 
+			+ payment : online or physical
+			+ booking : select timetable
+			+ ............................................................
+
